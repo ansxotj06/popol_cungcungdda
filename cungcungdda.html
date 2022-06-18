@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쿵쿵따 실습</title>
+</head>
+<body>
+    <h3>쿵쿵따 실습</h3>
+    <hr>
+    <div><span id="member">1</span>번째 참가자입니다.</div>
+    <div>세 글자 단어를 입력하시오.</div>
+
+    <br>
+    <div>이전 언어는 <span id="word"></span>입니다.</div>
+    <input type="text">
+    <button>입력</button>
+
+
+    <script>
+        const num = parseInt(prompt("참가 인원의 수를 입력하세요.", 10));
+
+        const $member = document.querySelector('#member');  //현재 진행하는 참가원의 수
+        const $button = document.querySelector('button');  //버튼
+        const $input = document.querySelector('input');  //입력창
+        const $word = document.querySelector('#word');  //이전 단어
+        
+        let word;  //입력한 단어
+        let mem = 1;  //현재 차례의 수
+
+        
+
+        const onClickButton = () => {
+            if (word.length == 3) {
+                console.log(word, " 쿵쿵따!!");
+                $word.textContent = word;
+
+                if (mem + 1 > num) {
+                    mem = 1;
+                    $member.textContent = mem;
+                }
+                else {
+                    ++mem;
+                    $member.textContent = mem;
+                }
+            }
+            else {
+                alert("입력하신 단어는 3글자가 아닙니다.");
+            }
+
+            $input.value = "";
+            $input.focus();
+        };
+
+        const input = (event) => {
+            word = event.target.value;
+        };
+
+        if (snum) {
+            $input.addEventListener('input', input);
+            $button.addEventListener('click', onClickButton);
+        }
+        else {
+            console.log("인원수를 정확하게 입력해주세요");
+        }
+
+        
+
+        
+    </script>
+</body>
+</html>
